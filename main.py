@@ -37,6 +37,9 @@ def clear():
 
 clear()
 
+# create the DEFAULTS.
+WEBSITES_DATA_FILE_NAME = "websites_data.json"
+
 
 def main():
     pass
