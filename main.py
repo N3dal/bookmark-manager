@@ -16,7 +16,7 @@
 # -----------------------------------------------------------------
 
 from os import name as OS_NAME
-from os import system
+from os import (system, listdir)
 from webbrowser import (open_new, open_new_tab)
 from webbrowser import open as open_web_browser
 import json
