@@ -74,8 +74,23 @@ def is_exist():
     return WEBSITES_DATA_FILE_NAME in listdir(WEBSITES_DATA_FILE_PATH)
 
 
+def read_file_data():
+    """get the websites data from json file."""
+
+    # first check out if the file exist or not.
+    if is_exist():
+
+        with open(WEBSITES_DATA_FILE_PATH+"/"+WEBSITES_DATA_FILE_NAME, "r") as file:
+            return json.load(file)
+
+    # if file not exist:
+    return -1
+
+
 def main():
-    main_menu()
+    data = read_file_data()
+
+    print(data)
 
 
 if __name__ == "__main__":
