@@ -37,8 +37,9 @@ def clear():
 
 clear()
 
-# create the DEFAULTS.
+# create program DEFAULTS.
 WEBSITES_DATA_FILE_NAME = "websites_data.json"
+WEBSITES_DATA_FILE_PATH = "./"
 PROGRAM_NAME = "Simple Bookmark Manager"
 PROGRAM_OPTIONS = (
     "Add new website",
@@ -65,6 +66,12 @@ def main_menu():
     # now get the user input and return it.
 
     return input('\n'.ljust(40) + ': ').strip().lower()
+
+
+def is_exist():
+    """checkout if the websites-data file is exist or not."""
+
+    return WEBSITES_DATA_FILE_NAME in listdir(WEBSITES_DATA_FILE_PATH)
 
 
 def main():
