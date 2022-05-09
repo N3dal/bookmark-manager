@@ -17,8 +17,8 @@
 
 from os import name as OS_NAME
 from os import (system, listdir)
-from webbrowser import (open_new, open_new_tab)
-from webbrowser import open as open_web_browser
+from webbrowser import open_new_tab
+from webbrowser import open_new as open_new_window
 import json
 import datetime
 
@@ -87,11 +87,23 @@ def read_file_data():
     return -1
 
 
+def open_url_in_browser(url: str, open_in_new_window: bool = False):
+    """open the given link using your default browser,
+    in new window if you want or on new tab."""
+
+    if open_in_new_window == True:
+        # open the link on new window.
+        open_new_window(url)
+
+    else:
+        # open the link on new tab,
+        # the default.
+        open_new_tab(url)
+
 
 def main():
-    data = read_file_data()
 
-    print(data)
+    open_url_in_browser("www.google.com", 1)
 
 
 if __name__ == "__main__":
