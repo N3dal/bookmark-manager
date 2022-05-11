@@ -110,7 +110,8 @@ def check_missing_prefix(url: str):
     # note: make sure to save the website in,
     # lower-case.
     # so first we have to lower-case the url.
-    url = url.lower()
+    # and make sure to remove spaces.
+    url = url.lower().strip()
 
     # make sure to remove all "//"
     url = url.replace(":", "##")
@@ -137,7 +138,7 @@ def check_missing_prefix(url: str):
 
 def main():
 
-    url = check_missing_prefix("http://annajah.net/")
+    url = check_missing_prefix("    http://annajah.net/    ")
 
     print(url)
 
