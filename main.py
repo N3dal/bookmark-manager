@@ -136,9 +136,26 @@ def check_missing_prefix(url: str):
     return f"https://www.{url}"
 
 
+def url_end_check(url: str, ends: tuple = ("com", "org", "net"), default_end: int = 0):
+    """checkout if the website contain a one of those,
+    ends: (com, org, net) or the ends that the user provides,
+    and add the default end if its not exist in the url."""
+
+    # make sure that the default end don't go out of,
+    # the ends tuple range.
+    default_end %= len(ends)
+
+    if url[-3:] in ends:
+        return url
+
+    return f"{url}.{ends[default_end]}"
+
+
+
+
 def main():
 
-    url = check_missing_prefix("    http://annajah.net/    ")
+    url = url_end_check("google", default_end=9)
 
     print(url)
 
