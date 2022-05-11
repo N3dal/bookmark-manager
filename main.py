@@ -101,9 +101,35 @@ def open_url_in_browser(url: str, open_in_new_window: bool = False):
         open_new_tab(url)
 
 
+def check_missing_prefix(url: str):
+    """check out from user input and make sure if the user forget,
+    adding 'www' or 'https:// | http://' this function will edit,
+    the string and add the missing ones and return it,
+    as new value."""
+
+    # note: make sure to save the website in,
+    # lower-case.
+    # so first we have to lower-case the url.
+
+    url = url.lower()
+
+    if url.startswith("https://") or url.startswith("http://"):
+        # if the website contain either ("https://", "http://").
+
+        return url
+
+    else:
+        # add either ("https://", "http://"), the default,
+        # one that i select is "https://".
+
+        return f"https://{url}"
+
+
 def main():
 
-    open_url_in_browser("www.google.com", 1)
+    url = check_missing_prefix("https://https://www.google.com")
+
+    print(url)
 
 
 if __name__ == "__main__":
