@@ -110,24 +110,25 @@ def check_missing_prefix(url: str):
     # note: make sure to save the website in,
     # lower-case.
     # so first we have to lower-case the url.
-
     url = url.lower()
 
-    if url.startswith("https://") or url.startswith("http://"):
-        # if the website contain either ("https://", "http://").
+    # first remove all "https" and "http".
+    url_parts = filter(lambda part: part not in (
+        "https:", "http:", "http", "https"), url.split("//"))
 
-        return url
+    url = "".join(url_parts)
 
-    else:
-        # add either ("https://", "http://"), the default,
-        # one that i select is "https://".
+    # second remove all "www"
+    url_parts = filter(lambda part: part not in ("www",), url.split("."))
 
-        return f"https://{url}"
+    url = ".".join(url_parts)
+
+    return f"https://www.{url}"
 
 
 def main():
 
-    url = check_missing_prefix("https://https://www.google.com")
+    url = check_missing_prefix("google/keep.net")
 
     print(url)
 
