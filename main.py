@@ -112,9 +112,18 @@ def check_missing_prefix(url: str):
     # so first we have to lower-case the url.
     url = url.lower()
 
+    # make sure to remove all "//"
+    url = url.replace(":", "##")
+
     # first remove all "https" and "http".
     url_parts = filter(lambda part: part not in (
-        "https:", "http:", "http", "https"), url.split("//"))
+        "http", "https"), url.split("//"))
+
+    url = "".join(url_parts)
+
+    # now remove all the colon's.
+    url_parts = filter(lambda part: part not in (
+        "http", "https"), url.split("##"))
 
     url = "".join(url_parts)
 
@@ -128,7 +137,7 @@ def check_missing_prefix(url: str):
 
 def main():
 
-    url = check_missing_prefix("google/keep.net")
+    url = check_missing_prefix("http://annajah.net/")
 
     print(url)
 
