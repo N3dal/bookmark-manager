@@ -151,11 +151,15 @@ def url_end_check(url: str, ends: tuple = ("com", "org", "net"), default_end: in
     return f"{url}.{ends[default_end]}"
 
 
+def url_check(url):
+    """checkout of the url and fix missing prefix and ends."""
+
+    return url_end_check(check_missing_prefix(url))
 
 
 def main():
 
-    url = url_end_check("google", default_end=9)
+    url = url_check("www.google")
 
     print(url)
 
