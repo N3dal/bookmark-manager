@@ -157,11 +157,40 @@ def url_check(url):
     return url_end_check(check_missing_prefix(url))
 
 
+def draw_urls_table(*urls):
+    """draw table for websites."""
+
+    # note:
+    # i use some special unicode chars,
+    # link for this special unicodes:
+    # https://en.wikipedia.org/wiki/Box-drawing_character
+
+    TOP_LEFT_PIPE = "┌"
+    TOP_RIGHT_PIPE = "┐"
+
+    BUTTOM_LEFT_PIPE = "└"
+    BUTTOM_RIGHT_PIPE = "┘"
+
+    HORIZONTAL_LINE = "─"
+    VERTICAL_LINE = "│"
+
+    for index, url in enumerate(urls, 1):
+
+        print(TOP_LEFT_PIPE, HORIZONTAL_LINE*60, TOP_RIGHT_PIPE, sep='')
+
+        print(VERTICAL_LINE, f"[{str(index).zfill(2)}]",
+              url.center(53), VERTICAL_LINE)
+
+        print(BUTTOM_LEFT_PIPE, HORIZONTAL_LINE*60, BUTTOM_RIGHT_PIPE, sep='')
+
+
 def main():
 
-    url = url_check("www.google")
+    # url = url_check("www.google")
 
-    print(url)
+    # print(url)
+
+    draw_urls_table("Keep", "amazon", "calender", "io", "github")
 
 
 if __name__ == "__main__":
