@@ -157,13 +157,16 @@ def url_check(url):
     return url_end_check(check_missing_prefix(url))
 
 
-def draw_urls_table(*urls):
+def draw_urls_table(*urls, rows: int = 2):
     """draw table for websites."""
 
     # note:
     # i use some special unicode chars,
     # link for this special unicodes:
     # https://en.wikipedia.org/wiki/Box-drawing_character
+
+    # max number of rows is three.
+    rows %= 4
 
     TOP_LEFT_PIPE = "┌"
     TOP_RIGHT_PIPE = "┐"
@@ -174,14 +177,29 @@ def draw_urls_table(*urls):
     HORIZONTAL_LINE = "─"
     VERTICAL_LINE = "│"
 
-    for index, url in enumerate(urls, 1):
+    # for index, url in enumerate(urls, 1):
+    index = 0
+    for _ in range():
 
-        print(TOP_LEFT_PIPE, HORIZONTAL_LINE*60, TOP_RIGHT_PIPE, sep='')
+        for _ in range(rows):
+            print(TOP_LEFT_PIPE, HORIZONTAL_LINE *
+                  60, TOP_RIGHT_PIPE, sep='', end='')
+        print()
 
-        print(VERTICAL_LINE, f"[{str(index).zfill(2)}]",
-              url.center(53), VERTICAL_LINE)
+        for _ in range(rows):
+            print(VERTICAL_LINE, f"[{str(index+1).zfill(2)}]",
+                  urls[index].center(53), VERTICAL_LINE, end='')
+            index += 1
 
-        print(BUTTOM_LEFT_PIPE, HORIZONTAL_LINE*60, BUTTOM_RIGHT_PIPE, sep='')
+        print()
+
+        for _ in range(rows):
+            print(BUTTOM_LEFT_PIPE, HORIZONTAL_LINE *
+                  60, BUTTOM_RIGHT_PIPE, sep='', end='')
+
+        print()
+
+        # print('\t')
 
 
 def main():
@@ -190,7 +208,8 @@ def main():
 
     # print(url)
 
-    draw_urls_table("Keep", "amazon", "calender", "io", "github")
+    draw_urls_table("Keep", "amazon", "calender",
+                    "io", "github", "youtube", "gmail")
 
 
 if __name__ == "__main__":
