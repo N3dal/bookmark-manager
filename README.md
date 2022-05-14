@@ -1,5 +1,6 @@
 ## Simple CLI Bookmark manager.
-this is one of my fifty python projects challenge.
+# this is one of my fifty python projects challenge.
+
 use this program to save you favorite websites.
 
 ![made-with-python](./src/made-with-python.svg)
