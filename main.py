@@ -202,6 +202,16 @@ def draw_urls_table(*urls, rows: int = 2):
         # print('\t')
 
 
+def get_user_input():
+    """get the url and the url alias from the user."""
+
+    usr_input_url = input("Enter URL: ").strip().lower()
+    usr_input_url_alias = input("Enter URL Alias: ").strip()
+
+    if usr_input_url + usr_input_url_alias == "":
+        # if they-are both empty.
+
+
 def main():
 
     # url = url_check("www.google")
