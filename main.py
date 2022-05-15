@@ -57,15 +57,7 @@ def main_menu():
     # first wipe the terminal screen.
     clear()
 
-    print(PROGRAM_NAME.center(80, '-'))
-
-    # print program options.
-    for option_number, option_name in enumerate(PROGRAM_OPTIONS, 1):
-        print(f"[{option_number}] {option_name}.".center(80))
-
-    # now get the user input and return it.
-
-    return input('\n'.ljust(40) + ': ').strip().lower()
+    draw_table(*PROGRAM_OPTIONS)
 
 
 def is_exist():
@@ -157,7 +149,7 @@ def url_check(url):
     return url_end_check(check_missing_prefix(url))
 
 
-def draw_urls_table(*urls):
+def draw_table(*items):
     """draw table for websites."""
 
     # make sure to clear at first.
@@ -177,9 +169,9 @@ def draw_urls_table(*urls):
     HORIZONTAL_LINE = "─"
     VERTICAL_LINE = "│"
 
-    # for index, url in enumerate(urls, 1):
+    # for index, url in enumerate(items, 1):
     index = 0
-    for _ in range(len(urls)//2):
+    for _ in range(len(items)//2):
 
         for _ in range(2):
             print(TOP_LEFT_PIPE, HORIZONTAL_LINE *
@@ -188,7 +180,7 @@ def draw_urls_table(*urls):
 
         for _ in range(2):
             print(VERTICAL_LINE, f"[{str(index+1).zfill(2)}]",
-                  urls[index].center(53), VERTICAL_LINE, end='')
+                  items[index].center(53), VERTICAL_LINE, end='')
             index += 1
         print()
 
@@ -197,7 +189,7 @@ def draw_urls_table(*urls):
                   60, BUTTOM_RIGHT_PIPE, sep='', end='')
         print()
 
-    if len(urls) % 2:
+    if len(items) % 2:
         # add extra column.
         # note i use spaces for better control.
         SHIFT = 30
@@ -205,7 +197,7 @@ def draw_urls_table(*urls):
               60, TOP_RIGHT_PIPE, sep='')
 
         print(' '*(SHIFT-1), VERTICAL_LINE, f"[{str(index+1).zfill(2)}]",
-              urls[index].center(53), VERTICAL_LINE)
+              items[index].center(53), VERTICAL_LINE)
 
         print(' '*SHIFT, BUTTOM_LEFT_PIPE, HORIZONTAL_LINE *
               60, BUTTOM_RIGHT_PIPE, sep='')
@@ -240,8 +232,8 @@ def main():
 
     # print(url)
 
-    draw_urls_table("Keep", "amazon", "calender",
-                    "io", "github", "youtube", "gmail", "freespace", "fight")
+    # draw_table(*PROGRAM_OPTIONS)
+    main_menu()
 
 
 if __name__ == "__main__":
