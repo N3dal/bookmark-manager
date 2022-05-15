@@ -150,7 +150,8 @@ def url_check(url):
 
 
 def draw_table(*items):
-    """draw table for websites."""
+    """use this function to draw tables,
+    for menu or for websites."""
 
     # make sure to clear at first.
     clear()
@@ -169,7 +170,6 @@ def draw_table(*items):
     HORIZONTAL_LINE = "─"
     VERTICAL_LINE = "│"
 
-    # for index, url in enumerate(items, 1):
     index = 0
     for _ in range(len(items)//2):
 
