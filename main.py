@@ -226,6 +226,12 @@ def get_user_input():
         pass
 
 
+def create_default_alias(url: str):
+    """create a default alias from the url"""
+
+    
+
+
 def main():
 
     # url = url_check("www.google")
