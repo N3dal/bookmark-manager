@@ -160,6 +160,9 @@ def url_check(url):
 def draw_urls_table(*urls):
     """draw table for websites."""
 
+    # make sure to clear at first.
+    clear()
+
     # note:
     # i use some special unicode chars,
     # link for this special unicodes:
@@ -213,10 +216,21 @@ def get_user_input():
     """get the url and the url alias from the user."""
 
     usr_input_url = input("Enter URL: ").strip().lower()
+
+    # Guard-Condition.
+    # make sure that the user input is not empty,
+    # if its empty that means the user want to get out.
+    if not usr_input_url:
+        # the user want to exit, simply out want to go back.
+        # so end the function and we not need to the url-alias,
+        # because in the first place we don't get the url.
+        return -1
+
     usr_input_url_alias = input("Enter URL Alias: ").strip()
 
-    if usr_input_url + usr_input_url_alias == "":
-        # if they-are both empty.
+    # Guard-Condition.
+    if not usr_input_url_alias:
+        # add default alias if the user didn't give us one.
         pass
 
 
