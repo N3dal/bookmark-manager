@@ -157,16 +157,13 @@ def url_check(url):
     return url_end_check(check_missing_prefix(url))
 
 
-def draw_urls_table(*urls, rows: int = 2):
+def draw_urls_table(*urls):
     """draw table for websites."""
 
     # note:
     # i use some special unicode chars,
     # link for this special unicodes:
     # https://en.wikipedia.org/wiki/Box-drawing_character
-
-    # max number of rows is three.
-    rows %= 4
 
     TOP_LEFT_PIPE = "┌"
     TOP_RIGHT_PIPE = "┐"
@@ -179,26 +176,36 @@ def draw_urls_table(*urls, rows: int = 2):
 
     # for index, url in enumerate(urls, 1):
     index = 0
-    for _ in range():
+    for _ in range(len(urls)//2):
 
-        for _ in range(rows):
+        for _ in range(2):
             print(TOP_LEFT_PIPE, HORIZONTAL_LINE *
                   60, TOP_RIGHT_PIPE, sep='', end='')
         print()
 
-        for _ in range(rows):
+        for _ in range(2):
             print(VERTICAL_LINE, f"[{str(index+1).zfill(2)}]",
                   urls[index].center(53), VERTICAL_LINE, end='')
             index += 1
-
         print()
 
-        for _ in range(rows):
+        for _ in range(2):
             print(BUTTOM_LEFT_PIPE, HORIZONTAL_LINE *
                   60, BUTTOM_RIGHT_PIPE, sep='', end='')
-
         print()
 
+    if len(urls) % 2:
+        # add extra column.
+        # note i use spaces for better control.
+        SHIFT = 30
+        print(' '*SHIFT, TOP_LEFT_PIPE, HORIZONTAL_LINE *
+              60, TOP_RIGHT_PIPE, sep='')
+
+        print(' '*(SHIFT-1), VERTICAL_LINE, f"[{str(index+1).zfill(2)}]",
+              urls[index].center(53), VERTICAL_LINE)
+
+        print(' '*SHIFT, BUTTOM_LEFT_PIPE, HORIZONTAL_LINE *
+              60, BUTTOM_RIGHT_PIPE, sep='')
         # print('\t')
 
 
@@ -210,6 +217,7 @@ def get_user_input():
 
     if usr_input_url + usr_input_url_alias == "":
         # if they-are both empty.
+        pass
 
 
 def main():
@@ -219,7 +227,7 @@ def main():
     # print(url)
 
     draw_urls_table("Keep", "amazon", "calender",
-                    "io", "github", "youtube", "gmail")
+                    "io", "github", "youtube", "gmail", "freespace", "fight")
 
 
 if __name__ == "__main__":
