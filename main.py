@@ -61,22 +61,35 @@ def main_menu():
 
         draw_table(*PROGRAM_OPTIONS)
 
-        usr_input = input(": ").strip().lower()
+        usr_option = input(": ").strip().lower()
 
-        if usr_input not in "12345":
+        if usr_option not in "12345":
             # if the user give us wrong option.
             continue
 
         else:
             # if we get any of the option above,
             # that in the program_option tuple.
-            pass
+            option_call(usr_option)
 
 
 def option_call(option: str):
     """call the function for the selected option."""
 
-    pass
+    functions = (
+        add_new_website,
+        show_all_websites,
+        edit_websites_data,
+        show_program_log,
+        _quit
+    )
+
+    # make sure to clear the table.
+    clear()
+    functions[int(option)-1]()
+
+    # now end the function.
+    return 0
 
 
 def is_exist():
@@ -273,21 +286,36 @@ def create_default_alias(url: str):
 def add_new_website():
     """"""
 
+    print("new website")
+    input()
+
 
 def show_all_websites():
     """"""
+
+    print("all websites")
+    input()
 
 
 def edit_websites_data():
     """"""
 
+    print("edit websites")
+    input()
+
 
 def show_program_log():
     """"""
 
+    print("program log")
+    input()
+
 
 def _quit():
     """"""
+
+    print("quit")
+    input()
 
 
 def main():
