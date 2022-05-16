@@ -55,9 +55,22 @@ def main_menu():
     all the program options."""
 
     # first wipe the terminal screen.
-    clear()
 
-    draw_table(*PROGRAM_OPTIONS)
+    while True:
+        clear()
+
+        draw_table(*PROGRAM_OPTIONS)
+
+        usr_input = input(": ").strip().lower()
+
+        if usr_input not in "12345":
+            # if the user give us wrong option.
+            continue
+
+        else:
+            # if we get any of the option above,
+            # that in the program_option tuple.
+            pass
 
 
 def is_exist():
@@ -252,9 +265,9 @@ def main():
     # print(url)
 
     # draw_table(*PROGRAM_OPTIONS)
-    # main_menu()
-    url = create_default_alias("https://keep.google.com")
-    print(url)
+    main_menu()
+    # url = create_default_alias("https://keep.google.com")
+    # print(url)
 
 
 if __name__ == "__main__":
