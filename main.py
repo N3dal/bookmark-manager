@@ -59,7 +59,7 @@ def main_menu():
     while True:
         clear()
 
-        draw_table(*PROGRAM_OPTIONS)
+        draw_table(*PROGRAM_OPTIONS, menu=True)
 
         usr_option = input(": ").strip().lower()
 
@@ -181,9 +181,17 @@ def url_check(url):
     return url_end_check(check_missing_prefix(url))
 
 
-def draw_table(*items):
+def draw_table(*items, menu: bool = False):
     """use this function to draw tables,
-    for menu or for websites."""
+    for menu or for websites.
+    menu:
+        responsable of setup the items index,
+        either adding zero before the number or not,
+        depanding on the table type,
+        if its for menu so we not need to zero,
+        or table for show data so we probably need,
+        some zero laying around.
+    """
 
     # make sure to clear at first.
     clear()
@@ -211,8 +219,18 @@ def draw_table(*items):
         print()
 
         for _ in range(2):
-            print(VERTICAL_LINE, f"[{str(index+1).zfill(2)}]",
-                  items[index].center(53), VERTICAL_LINE, end='')
+            # add zero-fill or not depanding on the menu argument.
+            string_index_item = str(
+                index+1).zfill(2) if not menu else str(index+1)
+
+            # adding menu is like adding '1' in case if menu==True,
+            # else is like adding zero, and we do that because,
+            # if we remove the zero's we get a missing space,
+            # and this will make one of our vertical_line get back,
+            # so add one space to fill that zero place,
+            # and if we have a zero so we not need to fill that place.
+            print(VERTICAL_LINE, f"[{string_index_item}]",
+                  items[index].center(53+menu), VERTICAL_LINE, end='')
             index += 1
         print()
 
