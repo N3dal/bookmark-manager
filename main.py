@@ -234,7 +234,15 @@ def create_default_alias(url: str):
     # first add the https and com or net or any end.
     url = url_check(url)
 
-    return url.split('.')[1]
+    # and make sure to remove the first item and the last one,
+    # form the list.
+    # ex:
+    # https://keep.google.com
+    # from that url we need only the 'keep' and 'google',
+    # and join them using any char you want, to create default alias.
+    url_name = url.split('.')[1:-1]
+
+    return "-".join(url_name)
 
 
 def main():
@@ -245,7 +253,7 @@ def main():
 
     # draw_table(*PROGRAM_OPTIONS)
     # main_menu()
-    url = create_default_alias("google")
+    url = create_default_alias("https://keep.google.com")
     print(url)
 
 
