@@ -264,6 +264,32 @@ def create_default_alias(url: str):
     return "-".join(url_name)
 
 
+# "Add new website",
+# "Show all websites",
+# "Edit websites data",
+# "Show program Log",
+# "Quit"
+
+def add_new_website():
+    """"""
+
+
+def show_all_websites():
+    """"""
+
+
+def edit_websites_data():
+    """"""
+
+
+def show_program_log():
+    """"""
+
+
+def _quit():
+    """"""
+
+
 def main():
 
     # url = url_check("www.google")
