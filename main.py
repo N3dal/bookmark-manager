@@ -73,6 +73,12 @@ def main_menu():
             pass
 
 
+def option_call(option: str):
+    """call the function for the selected option."""
+
+    pass
+
+
 def is_exist():
     """checkout if the websites-data file is exist or not."""
 
