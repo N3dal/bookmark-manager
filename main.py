@@ -223,13 +223,18 @@ def get_user_input():
     # Guard-Condition.
     if not usr_input_url_alias:
         # add default alias if the user didn't give us one.
-        pass
+        # by the using of the url that user give us we will,
+        # create an alias from that url.
+        usr_input_url_alias = create_default_alias(usr_input_url)
 
 
 def create_default_alias(url: str):
     """create a default alias from the url"""
 
-    
+    # first add the https and com or net or any end.
+    url = url_check(url)
+
+    return url.split('.')[1]
 
 
 def main():
@@ -239,7 +244,9 @@ def main():
     # print(url)
 
     # draw_table(*PROGRAM_OPTIONS)
-    main_menu()
+    # main_menu()
+    url = create_default_alias("google")
+    print(url)
 
 
 if __name__ == "__main__":
