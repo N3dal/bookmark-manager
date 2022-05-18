@@ -23,6 +23,8 @@ import json
 import datetime
 
 
+# TODO: split the script into small-scripts. => seperated files.
+
 def clear():
     """wipe the terminal screen."""
 
