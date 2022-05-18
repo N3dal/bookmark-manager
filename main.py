@@ -385,10 +385,10 @@ def _quit():
     exit()
 
 
-# def error_msg():
-#     """just a simple error msg for wrong user input"""
-#     print("Error the Number is Out-of-Range!!!, press any key to continue: ")
-#     input()
+def error_msg():
+    """just a simple error msg for wrong user input"""
+    print("Error the Number is Out-of-Range!!!, press any key to continue: ")
+    input()
 
 
 def main():
