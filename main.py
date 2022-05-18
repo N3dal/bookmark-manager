@@ -280,6 +280,8 @@ def get_user_input():
         # create an alias from that url.
         usr_input_url_alias = create_default_alias(usr_input_url)
 
+    return usr_input_url, usr_input_url_alias
+
 
 def create_default_alias(url: str):
     """create a default alias from the url"""
@@ -305,10 +307,9 @@ def create_default_alias(url: str):
 # "Quit"
 
 def add_new_website():
-    """"""
+    """let the users enter there favorite websites."""
 
-    print("new website")
-    input()
+    # url get_user_input()
 
 
 def show_all_websites():
@@ -357,6 +358,7 @@ def show_all_websites():
                 # check out if the user args contain 'w',
                 # if then open the url in new window.
                 open_in_new_window = 'w' in usr_args
+
                 open_url_in_browser(
                     url_links[usr_number_choice-1], open_in_new_window)
         else:
