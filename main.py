@@ -21,9 +21,10 @@ from webbrowser import open_new_tab
 from webbrowser import open_new as open_new_window
 import json
 import datetime
+from sys import exit
 
 
-# TODO: split the script into small-scripts. => seperated files.
+# TODO: split the script into small-scripts. => separated files.
 
 def clear():
     """wipe the terminal screen."""
@@ -311,10 +312,12 @@ def add_new_website():
 
 
 def show_all_websites():
-    """"""
+    """show all the password that available in the json data-file."""
 
-    print("all websites")
-    input()
+    # websites_data = read_file_data()
+
+    # print(websites_data)
+    # input()
 
 
 def edit_websites_data():
@@ -333,9 +336,7 @@ def show_program_log():
 
 def _quit():
     """"""
-
-    print("quit")
-    input()
+    exit()
 
 
 def main():
