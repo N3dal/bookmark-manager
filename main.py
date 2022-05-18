@@ -314,10 +314,56 @@ def add_new_website():
 def show_all_websites():
     """show all the password that available in the json data-file."""
 
-    # websites_data = read_file_data()
+    # get the data from the json file.
+    websites_data = read_file_data()
 
-    # print(websites_data)
-    # input()
+    # all the dict-keys are the aliases for the websites.
+    # so first we have to get all the aliases.
+    url_aliases = websites_data.keys()
+
+    # second get all the links from the dict-value,
+    # notice that we store the link and adding-date,
+    # as list so the first item from the list is the link.
+    url_links = [link[0] for link in websites_data.values()]
+
+    while True:
+        # keep showing the table until user enter ['q', 'quit'].
+        draw_table(*url_aliases)
+
+        usr_input = input(
+            "Enter website number to open it add w to open it in new-window,\nor enter [q]uit to go back to the main-menu: ").lower().strip()
+
+        # get all the args the user pass.
+        usr_args = usr_input.split()
+
+        if usr_input in ("q", "quit"):
+            # go back to the main-menu.
+            break
+
+        elif not usr_input:
+            # if the user give us an empty string.
+            continue
+
+        elif usr_args[0].isdecimal():
+            # if the user want to open one of the websites.
+            usr_number_choice = int(usr_args[0])
+            # first make sure if the number is in the right range.
+            if usr_number_choice not in range(len(url_links)+1):
+                print("Error the Number is Out-of-Range!!!, press any key to continue: ")
+                input()
+
+            else:
+                # and make sure to remove one from the user_number_choice,
+                # because the index start from the zero.
+                # check out if the user args contain 'w',
+                # if then open the url in new window.
+                open_in_new_window = 'w' in usr_args
+                open_url_in_browser(
+                    url_links[usr_number_choice-1], open_in_new_window)
+        else:
+            # any unwanted input.
+            print("Error the Number is Out-of-Range!!!, press any key to continue: ")
+            input()
 
 
 def edit_websites_data():
@@ -337,6 +383,12 @@ def show_program_log():
 def _quit():
     """"""
     exit()
+
+
+# def error_msg():
+#     """just a simple error msg for wrong user input"""
+#     print("Error the Number is Out-of-Range!!!, press any key to continue: ")
+#     input()
 
 
 def main():
