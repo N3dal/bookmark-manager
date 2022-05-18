@@ -70,6 +70,10 @@ def main_menu():
             # if the user give us wrong option.
             continue
 
+        elif not usr_option:
+            # if we get an empty string.
+            continue
+
         else:
             # if we get any of the option above,
             # that in the program_option tuple.
@@ -269,7 +273,7 @@ def get_user_input():
         # the user want to exit, simply out want to go back.
         # so end the function and we not need to the url-alias,
         # because in the first place we don't get the url.
-        return -1
+        return 0, 0
 
     usr_input_url_alias = input("Enter URL Alias: ").strip()
 
@@ -309,7 +313,7 @@ def create_default_alias(url: str):
 def add_new_website():
     """let the users enter there favorite websites."""
 
-    # url get_user_input()
+    url_link, url_alias = get_user_input()
 
 
 def show_all_websites():
