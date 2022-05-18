@@ -349,8 +349,7 @@ def show_all_websites():
             usr_number_choice = int(usr_args[0])
             # first make sure if the number is in the right range.
             if usr_number_choice not in range(len(url_links)+1):
-                print("Error the Number is Out-of-Range!!!, press any key to continue: ")
-                input()
+                error_msg()
 
             else:
                 # and make sure to remove one from the user_number_choice,
@@ -362,8 +361,7 @@ def show_all_websites():
                     url_links[usr_number_choice-1], open_in_new_window)
         else:
             # any unwanted input.
-            print("Error the Number is Out-of-Range!!!, press any key to continue: ")
-            input()
+            error_msg()
 
 
 def edit_websites_data():

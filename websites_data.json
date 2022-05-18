@@ -1,3 +1,9 @@
 {
-    "google":["https://www.google.com", "12-02-2022/23:24:56"]
+    "google":["https://www.google.com", "12-02-2022/23:24:56"],
+    "amazon":["https://www.amazon.com", "12-02-2022/23:24:56"],
+    "keep.google":["https://www.keep.google.com", "12-02-2022/23:24:56"],
+    "pocket":["https://www.pocket.com", "12-02-2022/23:24:56"],
+    "youtube":["https://www.youtube.com", "12-02-2022/23:24:56"]
+
+
 }
