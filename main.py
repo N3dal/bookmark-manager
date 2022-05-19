@@ -315,6 +315,15 @@ def add_new_website():
 
     url_link, url_alias = get_user_input()
 
+    if not url_link:
+        # if the user didn't give us any thing.
+        print('fine')
+        input()
+    
+    else:
+        print("free")
+        input()
+
 
 def show_all_websites():
     """show all the password that available in the json data-file."""
