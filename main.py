@@ -317,12 +317,10 @@ def add_new_website():
 
     if not url_link:
         # if the user didn't give us any thing.
-        print('fine')
-        input()
-    
+        return 0
+
     else:
-        print("free")
-        input()
+        pass
 
 
 def show_all_websites():
