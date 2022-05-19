@@ -211,8 +211,8 @@ def draw_table(*items, menu: bool = False):
     TOP_LEFT_PIPE = "┌"
     TOP_RIGHT_PIPE = "┐"
 
-    BUTTOM_LEFT_PIPE = "└"
-    BUTTOM_RIGHT_PIPE = "┘"
+    BOTTOM_LEFT_PIPE = "└"
+    BOTTOM_RIGHT_PIPE = "┘"
 
     HORIZONTAL_LINE = "─"
     VERTICAL_LINE = "│"
@@ -242,8 +242,8 @@ def draw_table(*items, menu: bool = False):
         print()
 
         for _ in range(2):
-            print(BUTTOM_LEFT_PIPE, HORIZONTAL_LINE *
-                  60, BUTTOM_RIGHT_PIPE, sep='', end='')
+            print(BOTTOM_LEFT_PIPE, HORIZONTAL_LINE *
+                  60, BOTTOM_RIGHT_PIPE, sep='', end='')
         print()
 
     if len(items) % 2:
@@ -256,8 +256,8 @@ def draw_table(*items, menu: bool = False):
         print(' '*(SHIFT-1), VERTICAL_LINE, f"[{str(index+1).zfill(2)}]",
               items[index].center(53), VERTICAL_LINE)
 
-        print(' '*SHIFT, BUTTOM_LEFT_PIPE, HORIZONTAL_LINE *
-              60, BUTTOM_RIGHT_PIPE, sep='')
+        print(' '*SHIFT, BOTTOM_LEFT_PIPE, HORIZONTAL_LINE *
+              60, BOTTOM_RIGHT_PIPE, sep='')
         # print('\t')
 
 
