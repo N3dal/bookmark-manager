@@ -20,7 +20,7 @@ from os import (system, listdir)
 from webbrowser import open_new_tab
 from webbrowser import open_new as open_new_window
 import json
-import datetime
+from time import ctime
 from sys import exit
 
 
@@ -110,12 +110,32 @@ def read_file_data():
 
     # first check out if the file exist or not.
     if is_exist():
-
+        # add error handling here.
         with open(WEBSITES_DATA_FILE_PATH+"/"+WEBSITES_DATA_FILE_NAME, "r") as file:
             return json.load(file)
 
     # if file not exist:
     return -1
+
+
+def write_data_to_file(url_alias: str, url_link: str):
+    """write data for example new websites,
+    and other data to the json file."""
+
+    # first we have to get all the data from the file.
+    data_dict = read_file_data()
+
+    # now append the new data:
+    new_data = {url_alias: [url_link, ctime()]}
+
+    # now add the new data with all the old data.
+    data_dict.update(new_data)
+
+    # now dump-out all the data to the json file,
+    # notice that if the file is not exist then,
+    # this lines will create one.
+    with open(WEBSITES_DATA_FILE_PATH+"/"+WEBSITES_DATA_FILE_NAME, "w") as file:
+        json.dump(data_dict, file)
 
 
 def open_url_in_browser(url: str, open_in_new_window: bool = False):
@@ -410,6 +430,7 @@ def main():
 
     # draw_table(*PROGRAM_OPTIONS)
     main_menu()
+
     # url = create_default_alias("https://keep.google.com")
     # print(url)
 
