@@ -284,6 +284,7 @@ def draw_table(*items, menu: bool = False):
 def get_user_input():
     """get the url and the url alias from the user."""
 
+    print("Press to enter to get back")
     usr_input_url = input("Enter URL: ").strip().lower()
 
     # Guard-Condition.
@@ -340,7 +341,7 @@ def add_new_website():
         return 0
 
     else:
-        pass
+        write_data_to_file(url_alias, url_link)
 
 
 def show_all_websites():
