@@ -1,9 +1,1 @@
-{
-    "google":["https://www.google.com", "12-02-2022/23:24:56"],
-    "amazon":["https://www.amazon.com", "12-02-2022/23:24:56"],
-    "keep.google":["https://www.keep.google.com", "12-02-2022/23:24:56"],
-    "pocket":["https://www.pocket.com", "12-02-2022/23:24:56"],
-    "youtube":["https://www.youtube.com", "12-02-2022/23:24:56"]
-
-
-}
+{"google": ["www.google.com", 12], "crazy": ["crazy.com", "Thu May 19 23:54:19 2022"], "zee": ["zee.com", "Thu May 19 23:54:31 2022"], "amazon": ["amazon.com", "Thu May 19 23:56:28 2022"], "fine.ion": ["fine.io.com", "Thu May 19 23:56:48 2022"], "d": ["q", "Thu May 19 23:57:23 2022"], "fine.com": ["fine", "Thu May 19 23:58:24 2022"], "ff": ["ff.com", "Thu May 19 23:58:44 2022"], "github": ["www.github.com", "Sat Sep 10 13:28:04 2022"], "ghub": ["github.com", "Sat Sep 10 13:28:24 2022"]}
