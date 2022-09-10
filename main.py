@@ -25,17 +25,25 @@ from sys import exit
 
 
 # TODO: split the script into small-scripts. => separated files.
+# TODO: make sure to remove duplicate urls and assign them to different aliases names,
+# TODO: for example ("www.github.com", ("github", "ghub", "git")).
 
 def clear():
     """wipe the terminal screen."""
 
     if OS_NAME == "posix":
-        # *nix machines.
+        # for *nix machines.
         system("clear")
 
-    else:
-        # windows machines.
+    elif OS_NAME == "windows":
         system("cls")
+
+    else:
+        # for all other os in the world.
+        # system("your-command")
+        pass
+
+    return None
 
 
 clear()
