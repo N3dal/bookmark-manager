@@ -27,15 +27,15 @@ class Tools:
         return None
 
     @staticmethod
-    def draw_table(*items, menu: bool = False):
-        """use this function to draw tables,
+    def draw_box(*items, menu: bool = False):
+        """use this function to draw boxes,
         for menu or for websites.
         menu:
-            responsable of setup the items index,
+            responsible of setup the items index,
             either adding zero before the number or not,
-            depanding on the table type,
+            depending on the box type,
             if its for menu so we not need to zero,
-            or table for show data so we probably need,
+            or box for show data so we probably need,
             some zero laying around.
         """
 
@@ -44,7 +44,7 @@ class Tools:
 
         # note:
         # i use some special unicode chars,
-        # link for this special unicodes:
+        # link for this special uni-codes:
         # https://en.wikipedia.org/wiki/Box-drawing_character
 
         TOP_LEFT_PIPE = "┌"
@@ -65,7 +65,7 @@ class Tools:
             print()
 
             for _ in range(2):
-                # add zero-fill or not depanding on the menu argument.
+                # add zero-fill or not depending on the menu argument.
                 string_index_item = str(
                     index+1).zfill(2) if not menu else str(index+1)
 
