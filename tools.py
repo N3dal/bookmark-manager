@@ -2,7 +2,7 @@
 Contain all the tools needed for this project.
 """
 from os import name as OS_NAME
-from os import system
+from os import (system, listdir)
 
 
 class Tools:
@@ -98,6 +98,13 @@ class Tools:
             print(' '*SHIFT, BOTTOM_LEFT_PIPE, HORIZONTAL_LINE *
                   60, BOTTOM_RIGHT_PIPE, sep='')
             # print('\t')
+
+    @staticmethod
+    def websites_data_exist():
+        """checkout if the websites-data file is exist or not.
+        return True if the data is exist other wise it return False."""
+
+        return Constants.WEBSITES_DATA_FILE_NAME in listdir(Constants.WEBSITES_DATA_FILE_PATH)
 
 
 class Constants:
