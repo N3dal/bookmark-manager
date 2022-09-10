@@ -15,7 +15,6 @@
 # ///
 # -----------------------------------------------------------------
 from tools import *
-from os import (listdir)
 from webbrowser import open_new_tab
 from webbrowser import open_new as open_new_window
 import json
@@ -77,17 +76,11 @@ def option_call(option: str):
     return 0
 
 
-def is_exist():
-    """checkout if the websites-data file is exist or not."""
-
-    return Constants.WEBSITES_DATA_FILE_NAME in listdir(Constants.WEBSITES_DATA_FILE_PATH)
-
-
 def read_file_data():
     """get the websites data from json file."""
 
     # first check out if the file exist or not.
-    if is_exist():
+    if Tools.websites_data_exist():
         # add error handling here.
         with open(Constants.WEBSITES_DATA_FILE_PATH+"/"+Constants.WEBSITES_DATA_FILE_NAME, "r") as file:
             return json.load(file)
