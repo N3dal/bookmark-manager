@@ -2,3 +2,4 @@ simple_bookmark_manager.py
 websites.txt
 .vscode/
 tempCodeRunnerFile.py
+__pycache__/
