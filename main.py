@@ -14,9 +14,8 @@
 # ///
 # ///
 # -----------------------------------------------------------------
-
-from os import name as OS_NAME
-from os import (system, listdir)
+from tools import Tools
+from os import (listdir)
 from webbrowser import open_new_tab
 from webbrowser import open_new as open_new_window
 import json
@@ -28,25 +27,8 @@ from sys import exit
 # TODO: make sure to remove duplicate urls and assign them to different aliases names,
 # TODO: for example ("www.github.com", ("github", "ghub", "git")).
 
-def clear():
-    """wipe the terminal screen."""
 
-    if OS_NAME == "posix":
-        # for *nix machines.
-        system("clear")
-
-    elif OS_NAME == "windows":
-        system("cls")
-
-    else:
-        # for all other os in the world.
-        # system("your-command")
-        pass
-
-    return None
-
-
-clear()
+Tools.clear()
 
 # create program DEFAULTS.
 WEBSITES_DATA_FILE_NAME = "websites_data.json"
@@ -68,7 +50,7 @@ def main_menu():
     # first wipe the terminal screen.
 
     while True:
-        clear()
+        Tools.clear()
 
         draw_table(*PROGRAM_OPTIONS, menu=True)
 
@@ -100,7 +82,7 @@ def option_call(option: str):
     )
 
     # make sure to clear the table.
-    clear()
+    Tools.clear()
     functions[int(option)-1]()
 
     # now end the function.
@@ -229,7 +211,7 @@ def draw_table(*items, menu: bool = False):
     """
 
     # make sure to clear at first.
-    clear()
+    Tools.clear()
 
     # note:
     # i use some special unicode chars,
