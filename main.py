@@ -14,7 +14,7 @@
 # ///
 # ///
 # -----------------------------------------------------------------
-from tools import Tools
+from tools import *
 from os import (listdir)
 from webbrowser import open_new_tab
 from webbrowser import open_new as open_new_window
@@ -30,18 +30,6 @@ from sys import exit
 
 Tools.clear()
 
-# create program DEFAULTS.
-WEBSITES_DATA_FILE_NAME = "websites_data.json"
-WEBSITES_DATA_FILE_PATH = "./"
-PROGRAM_NAME = "Simple Bookmark Manager"
-PROGRAM_OPTIONS = (
-    "Add new website",
-    "Show all websites",
-    "Edit websites data",
-    "Show program Log",
-    "Quit"
-)
-
 
 def main_menu():
     """draw the main menu that will have,
@@ -52,7 +40,7 @@ def main_menu():
     while True:
         Tools.clear()
 
-        draw_table(*PROGRAM_OPTIONS, menu=True)
+        Tools.draw_table(*Constants.PROGRAM_OPTIONS, menu=True)
 
         usr_option = input(": ").strip().lower()
 
@@ -92,7 +80,7 @@ def option_call(option: str):
 def is_exist():
     """checkout if the websites-data file is exist or not."""
 
-    return WEBSITES_DATA_FILE_NAME in listdir(WEBSITES_DATA_FILE_PATH)
+    return Constants.WEBSITES_DATA_FILE_NAME in listdir(Constants.WEBSITES_DATA_FILE_PATH)
 
 
 def read_file_data():
@@ -101,7 +89,7 @@ def read_file_data():
     # first check out if the file exist or not.
     if is_exist():
         # add error handling here.
-        with open(WEBSITES_DATA_FILE_PATH+"/"+WEBSITES_DATA_FILE_NAME, "r") as file:
+        with open(Constants.WEBSITES_DATA_FILE_PATH+"/"+Constants.WEBSITES_DATA_FILE_NAME, "r") as file:
             return json.load(file)
 
     # if file not exist:
@@ -124,7 +112,7 @@ def write_data_to_file(url_alias: str, url_link: str):
     # now dump-out all the data to the json file,
     # notice that if the file is not exist then,
     # this lines will create one.
-    with open(WEBSITES_DATA_FILE_PATH+"/"+WEBSITES_DATA_FILE_NAME, "w") as file:
+    with open(Constants.WEBSITES_DATA_FILE_PATH+"/"+Constants.WEBSITES_DATA_FILE_NAME, "w") as file:
         json.dump(data_dict, file)
 
 
@@ -196,79 +184,6 @@ def url_check(url):
     """checkout of the url and fix missing prefix and ends."""
 
     return url_end_check(check_missing_prefix(url))
-
-
-def draw_table(*items, menu: bool = False):
-    """use this function to draw tables,
-    for menu or for websites.
-    menu:
-        responsable of setup the items index,
-        either adding zero before the number or not,
-        depanding on the table type,
-        if its for menu so we not need to zero,
-        or table for show data so we probably need,
-        some zero laying around.
-    """
-
-    # make sure to clear at first.
-    Tools.clear()
-
-    # note:
-    # i use some special unicode chars,
-    # link for this special unicodes:
-    # https://en.wikipedia.org/wiki/Box-drawing_character
-
-    TOP_LEFT_PIPE = "┌"
-    TOP_RIGHT_PIPE = "┐"
-
-    BOTTOM_LEFT_PIPE = "└"
-    BOTTOM_RIGHT_PIPE = "┘"
-
-    HORIZONTAL_LINE = "─"
-    VERTICAL_LINE = "│"
-
-    index = 0
-    for _ in range(len(items)//2):
-
-        for _ in range(2):
-            print(TOP_LEFT_PIPE, HORIZONTAL_LINE *
-                  60, TOP_RIGHT_PIPE, sep='', end='')
-        print()
-
-        for _ in range(2):
-            # add zero-fill or not depanding on the menu argument.
-            string_index_item = str(
-                index+1).zfill(2) if not menu else str(index+1)
-
-            # adding menu is like adding '1' in case if menu==True,
-            # else is like adding zero, and we do that because,
-            # if we remove the zero's we get a missing space,
-            # and this will make one of our vertical_line get back,
-            # so add one space to fill that zero place,
-            # and if we have a zero so we not need to fill that place.
-            print(VERTICAL_LINE, f"[{string_index_item}]",
-                  items[index].center(53+menu), VERTICAL_LINE, end='')
-            index += 1
-        print()
-
-        for _ in range(2):
-            print(BOTTOM_LEFT_PIPE, HORIZONTAL_LINE *
-                  60, BOTTOM_RIGHT_PIPE, sep='', end='')
-        print()
-
-    if len(items) % 2:
-        # add extra column.
-        # note i use spaces for better control.
-        SHIFT = 30
-        print(' '*SHIFT, TOP_LEFT_PIPE, HORIZONTAL_LINE *
-              60, TOP_RIGHT_PIPE, sep='')
-
-        print(' '*(SHIFT-1), VERTICAL_LINE, f"[{str(index+1).zfill(2)}]",
-              items[index].center(53), VERTICAL_LINE)
-
-        print(' '*SHIFT, BOTTOM_LEFT_PIPE, HORIZONTAL_LINE *
-              60, BOTTOM_RIGHT_PIPE, sep='')
-        # print('\t')
 
 
 def get_user_input():
@@ -351,7 +266,7 @@ def show_all_websites():
 
     while True:
         # keep showing the table until user enter ['q', 'quit'].
-        draw_table(*url_aliases)
+        Tools.draw_table(*url_aliases)
 
         usr_input = input(
             "Enter website number to open it add w to open it in new-window,\nor enter [q]uit to go back to the main-menu: ").lower().strip()
@@ -419,7 +334,7 @@ def main():
 
     # print(url)
 
-    # draw_table(*PROGRAM_OPTIONS)
+    # Tools.draw_table(*Tools.Constants.)
     main_menu()
 
     # url = create_default_alias("https://keep.google.com")
