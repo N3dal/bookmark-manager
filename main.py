@@ -39,7 +39,7 @@ def main_menu():
     while True:
         Tools.clear()
 
-        Tools.draw_table(*Constants.PROGRAM_OPTIONS, menu=True)
+        Tools.draw_box(*Constants.PROGRAM_OPTIONS, menu=True)
 
         usr_option = input(": ").strip().lower()
 
@@ -259,7 +259,7 @@ def show_all_websites():
 
     while True:
         # keep showing the table until user enter ['q', 'quit'].
-        Tools.draw_table(*url_aliases)
+        Tools.draw_box(*url_aliases)
 
         usr_input = input(
             "Enter website number to open it add w to open it in new-window,\nor enter [q]uit to go back to the main-menu: ").lower().strip()
@@ -327,7 +327,7 @@ def main():
 
     # print(url)
 
-    # Tools.draw_table(*Tools.Constants.)
+    # Tools.draw_box(*Tools.Constants.)
     main_menu()
 
     # url = create_default_alias("https://keep.google.com")
