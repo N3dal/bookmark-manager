@@ -14,7 +14,8 @@ class Url:
 
     def __init__(self, url: str, url_alias=""):
         self.url = Url.url_check(url)
-        self.url_alias = url_alias
+        self.url_alias = url_alias if url_alias else Url.create_default_alias(
+            self.url)
         self.create_date = ctime()
 
         Url.all_urls.append(self)
@@ -71,6 +72,14 @@ class Url:
 
         return f"https://www.{url}"
 
+    @staticmethod
+    def create_default_alias(url: str):
+        """create an alias name for the url from the url name."""
+
+        url_alias = url.split(".")[1:-1]
+
+        return "-".join(url_alias)
+
     def open_in_browser(self, open_in_new_window=False):
         """
         open url using your default browser
@@ -88,10 +97,6 @@ class Url:
 
         return True
 
-    def create_default_alias(url: str):
-        """create an alias name for the url from the url name."""
-        pass
-
     def export_2_json(self):
         """
         export the url data to json file,
@@ -101,6 +106,6 @@ class Url:
         return {self.url_alias: [self.url, self.create_date]}
 
 
-url1 = Url("amazon.net", "google-keep")
+url1 = Url("amazon.net")
 
 print(url1.export_2_json())
