@@ -13,7 +13,7 @@ class Url:
     all_urls = []
 
     def __init__(self, url: str, url_alias=""):
-        self.url = url
+        self.url = Url.url_check(url)
         self.url_alias = url_alias
         self.create_date = ctime()
 
@@ -21,6 +21,55 @@ class Url:
 
     def __repr__(self):
         return f"Url('{self.url}', '{self.url_alias}')"
+
+    @staticmethod
+    def url_check(url: str, default_url_end=0):
+        """
+        fix missing prefixes if its exist after checking out from user input,
+        and make sure if the user forget,
+        adding 'www' or 'https:// | http://' this function will edit,
+        the string and add the missing ones and return it,
+        as new value, and checkout if the website contain a one of those,
+        ends: (com, org, net) or the ends that the user provides,
+        and add the default end if its not exist in the url.
+        """
+
+        URL_ENDS = (
+            "com",
+            "org",
+            "net"
+        )
+
+        # note: make sure to save the website in,
+        # lower-case.
+        # so first we have to lower-case the url.
+        # and make sure to remove spaces.
+        url = url.lower().strip()
+
+        # make sure to remove all "//"
+        url = url.replace(":", "##")
+
+        # first remove all "https" and "http".
+        url_parts = filter(lambda part: part not in (
+            "http", "https"), url.split("//"))
+
+        url = "".join(url_parts)
+
+        # now remove all the colon's.
+        url_parts = filter(lambda part: part not in (
+            "http", "https"), url.split("##"))
+
+        url = "".join(url_parts)
+
+        # second remove all "www"
+        url_parts = filter(lambda part: part not in ("www",), url.split("."))
+
+        url = ".".join(url_parts)
+
+        if url[-3:] not in URL_ENDS:
+            url = f"{url}.{URL_ENDS[default_url_end]}"
+
+        return f"https://www.{url}"
 
     def open_in_browser(self, open_in_new_window=False):
         """
@@ -52,6 +101,6 @@ class Url:
         return {self.url_alias: [self.url, self.create_date]}
 
 
-url1 = Url("www.keep.google.com", "google-keep")
+url1 = Url("amazon.net", "google-keep")
 
 print(url1.export_2_json())
