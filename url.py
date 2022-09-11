@@ -3,6 +3,7 @@ Url type to deal with storing urls.
 """
 from webbrowser import open_new_tab
 from webbrowser import open_new as open_new_window
+from time import ctime
 
 
 class Url:
@@ -14,6 +15,7 @@ class Url:
     def __init__(self, url: str, url_alias=""):
         self.url = url
         self.url_alias = url_alias
+        self.create_date = ctime()
 
         Url.all_urls.append(self)
 
@@ -39,5 +41,12 @@ class Url:
         """create an alias name for the url from the url name."""
         pass
 
+    def export_2_json(self):
+        """export the url data to json file."""
+
+        return {self.url_alias: [self.url, self.create_date]}
+
 
 url1 = Url("www.keep.google.com", "google-keep")
+
+print(url1.export_2_json())
