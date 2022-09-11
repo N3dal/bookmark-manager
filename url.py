@@ -37,12 +37,17 @@ class Url:
             # open the url in new tab.
             open_new_tab(self.url)
 
+        return True
+
     def create_default_alias(url: str):
         """create an alias name for the url from the url name."""
         pass
 
     def export_2_json(self):
-        """export the url data to json file."""
+        """
+        export the url data to json file,
+        that's include (url_alias, url, create_date).
+        """
 
         return {self.url_alias: [self.url, self.create_date]}
 
