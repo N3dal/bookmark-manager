@@ -74,39 +74,6 @@ def option_call(option: str):
     return None
 
 
-def read_file_data():
-    """get the websites data from json file."""
-
-    # first check out if the file exist or not.
-    if Tools.websites_data_exist():
-        # add error handling here.
-        with open(Constants.WEBSITES_DATA_FILE_PATH+"/"+Constants.WEBSITES_DATA_FILE_NAME, "r") as file:
-            return json.load(file)
-
-    # if file not exist:
-    return -1
-
-
-def write_data_to_file(url: Url):
-    """write data for example new websites,
-    and other data to the json file."""
-
-    # first we have to get all the data from the file.
-    data_dict = read_file_data()
-
-    # now append the new data:
-    new_data = {url.url_alias: [url.url, url.create_date]}
-
-    # now add the new data with all the old data.
-    data_dict.update(new_data)
-
-    # now dump-out all the data to the json file,
-    # notice that if the file is not exist then,
-    # this lines will create one.
-    with open(Constants.WEBSITES_DATA_FILE_PATH+"/"+Constants.WEBSITES_DATA_FILE_NAME, "w") as file:
-        json.dump(data_dict, file)
-
-
 def get_user_input():
     """get the url and the url alias from the user."""
 
@@ -145,29 +112,32 @@ def add_new_website():
 
     url = Url(*get_user_input())
     # url_link, url_alias = get_user_input()
+    websites_data = WebsitesData()
 
     if not url.url:
         # if the user didn't give us any thing.
         return 0
 
     else:
-        write_data_to_file(url)
+        websites_data.set_data(url)
 
 
 def show_all_websites():
     """show all the password that available in the json data-file."""
 
     # get the data from the json file.
-    websites_data = read_file_data()
+    websites_data = WebsitesData()
+
+    data = websites_data.get_data()
 
     # all the dict-keys are the aliases for the websites.
     # so first we have to get all the aliases.
-    url_aliases = websites_data.keys()
+    url_aliases = data.keys()
 
     # second get all the links from the dict-value,
     # notice that we store the link and adding-date,
     # as list so the first item from the list is the link.
-    url_links = [link[0] for link in websites_data.values()]
+    url_links = [link[0] for link in data.values()]
 
     while True:
         # keep showing the table until user enter ['q', 'quit'].
