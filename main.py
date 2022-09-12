@@ -16,6 +16,7 @@
 # -----------------------------------------------------------------
 from tools import *
 from url import Url
+from websites_data import WebsitesData
 from sys import exit
 
 
