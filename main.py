@@ -109,74 +109,74 @@ def write_data_to_file(url_alias: str, url_link: str):
         json.dump(data_dict, file)
 
 
-def open_url_in_browser(url: str, open_in_new_window: bool = False):
-    """open the given link using your default browser,
-    in new window if you want or on new tab."""
+# def open_url_in_browser(url: str, open_in_new_window: bool = False):
+#     """open the given link using your default browser,
+#     in new window if you want or on new tab."""
 
-    if open_in_new_window == True:
-        # open the link on new window.
-        open_new_window(url)
+#     if open_in_new_window == True:
+#         # open the link on new window.
+#         open_new_window(url)
 
-    else:
-        # open the link on new tab,
-        # the default.
-        open_new_tab(url)
-
-
-def check_missing_prefix(url: str):
-    """check out from user input and make sure if the user forget,
-    adding 'www' or 'https:// | http://' this function will edit,
-    the string and add the missing ones and return it,
-    as new value."""
-
-    # note: make sure to save the website in,
-    # lower-case.
-    # so first we have to lower-case the url.
-    # and make sure to remove spaces.
-    url = url.lower().strip()
-
-    # make sure to remove all "//"
-    url = url.replace(":", "##")
-
-    # first remove all "https" and "http".
-    url_parts = filter(lambda part: part not in (
-        "http", "https"), url.split("//"))
-
-    url = "".join(url_parts)
-
-    # now remove all the colon's.
-    url_parts = filter(lambda part: part not in (
-        "http", "https"), url.split("##"))
-
-    url = "".join(url_parts)
-
-    # second remove all "www"
-    url_parts = filter(lambda part: part not in ("www",), url.split("."))
-
-    url = ".".join(url_parts)
-
-    return f"https://www.{url}"
+#     else:
+#         # open the link on new tab,
+#         # the default.
+#         open_new_tab(url)
 
 
-def url_end_check(url: str, ends: tuple = ("com", "org", "net"), default_end: int = 0):
-    """checkout if the website contain a one of those,
-    ends: (com, org, net) or the ends that the user provides,
-    and add the default end if its not exist in the url."""
+# def check_missing_prefix(url: str):
+#     """check out from user input and make sure if the user forget,
+#     adding 'www' or 'https:// | http://' this function will edit,
+#     the string and add the missing ones and return it,
+#     as new value."""
 
-    # make sure that the default end don't go out of,
-    # the ends tuple range.
-    default_end %= len(ends)
+#     # note: make sure to save the website in,
+#     # lower-case.
+#     # so first we have to lower-case the url.
+#     # and make sure to remove spaces.
+#     url = url.lower().strip()
 
-    if url[-3:] in ends:
-        return url
+#     # make sure to remove all "//"
+#     url = url.replace(":", "##")
 
-    return f"{url}.{ends[default_end]}"
+#     # first remove all "https" and "http".
+#     url_parts = filter(lambda part: part not in (
+#         "http", "https"), url.split("//"))
+
+#     url = "".join(url_parts)
+
+#     # now remove all the colon's.
+#     url_parts = filter(lambda part: part not in (
+#         "http", "https"), url.split("##"))
+
+#     url = "".join(url_parts)
+
+#     # second remove all "www"
+#     url_parts = filter(lambda part: part not in ("www",), url.split("."))
+
+#     url = ".".join(url_parts)
+
+#     return f"https://www.{url}"
 
 
-def url_check(url):
-    """checkout of the url and fix missing prefix and ends."""
+# def url_end_check(url: str, ends: tuple = ("com", "org", "net"), default_end: int = 0):
+#     """checkout if the website contain a one of those,
+#     ends: (com, org, net) or the ends that the user provides,
+#     and add the default end if its not exist in the url."""
 
-    return url_end_check(check_missing_prefix(url))
+#     # make sure that the default end don't go out of,
+#     # the ends tuple range.
+#     default_end %= len(ends)
+
+#     if url[-3:] in ends:
+#         return url
+
+#     return f"{url}.{ends[default_end]}"
+
+
+# def url_check(url):
+#     """checkout of the url and fix missing prefix and ends."""
+
+#     return url_end_check(check_missing_prefix(url))
 
 
 def get_user_input():
@@ -206,21 +206,21 @@ def get_user_input():
     return usr_input_url, usr_input_url_alias
 
 
-def create_default_alias(url: str):
-    """create a default alias from the url"""
+# def create_default_alias(url: str):
+#     """create a default alias from the url"""
 
-    # first add the https and com or net or any end.
-    url = url_check(url)
+#     # first add the https and com or net or any end.
+#     url = url_check(url)
 
-    # and make sure to remove the first item and the last one,
-    # form the list.
-    # ex:
-    # https://keep.google.com
-    # from that url we need only the 'keep' and 'google',
-    # and join them using any char you want, to create default alias.
-    url_name = url.split('.')[1:-1]
+#     # and make sure to remove the first item and the last one,
+#     # form the list.
+#     # ex:
+#     # https://keep.google.com
+#     # from that url we need only the 'keep' and 'google',
+#     # and join them using any char you want, to create default alias.
+#     url_name = url.split('.')[1:-1]
 
-    return "-".join(url_name)
+#     return "-".join(url_name)
 
 
 # "Add new website",
