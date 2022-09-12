@@ -15,12 +15,8 @@
 # ///
 # -----------------------------------------------------------------
 from tools import *
-from webbrowser import open_new_tab
-from webbrowser import open_new as open_new_window
-import json
-from time import ctime
-from sys import exit
 from url import Url
+from sys import exit
 
 
 # TODO: split the script into small-scripts. => separated files.
