@@ -3,3 +3,4 @@ websites.txt
 .vscode/
 tempCodeRunnerFile.py
 __pycache__/
+websites_data.json
