@@ -106,6 +106,6 @@ class Url:
         return {self.url_alias: [self.url, self.create_date]}
 
 
-url1 = Url("amazon.net")
+# url1 = Url("amazon.net")
 
-print(url1.export_2_json())
+# print(url1.export_2_json())
