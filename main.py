@@ -20,6 +20,7 @@ from webbrowser import open_new as open_new_window
 import json
 from time import ctime
 from sys import exit
+from url import Url
 
 
 # TODO: split the script into small-scripts. => separated files.
@@ -73,7 +74,7 @@ def option_call(option: str):
     functions[int(option)-1]()
 
     # now end the function.
-    return 0
+    return None
 
 
 def read_file_data():
@@ -89,7 +90,7 @@ def read_file_data():
     return -1
 
 
-def write_data_to_file(url_alias: str, url_link: str):
+def write_data_to_file(url: Url):
     """write data for example new websites,
     and other data to the json file."""
 
@@ -97,7 +98,7 @@ def write_data_to_file(url_alias: str, url_link: str):
     data_dict = read_file_data()
 
     # now append the new data:
-    new_data = {url_alias: [url_link, ctime()]}
+    new_data = {url.url_alias: [url.url, url.create_date]}
 
     # now add the new data with all the old data.
     data_dict.update(new_data)
@@ -109,80 +110,10 @@ def write_data_to_file(url_alias: str, url_link: str):
         json.dump(data_dict, file)
 
 
-# def open_url_in_browser(url: str, open_in_new_window: bool = False):
-#     """open the given link using your default browser,
-#     in new window if you want or on new tab."""
-
-#     if open_in_new_window == True:
-#         # open the link on new window.
-#         open_new_window(url)
-
-#     else:
-#         # open the link on new tab,
-#         # the default.
-#         open_new_tab(url)
-
-
-# def check_missing_prefix(url: str):
-#     """check out from user input and make sure if the user forget,
-#     adding 'www' or 'https:// | http://' this function will edit,
-#     the string and add the missing ones and return it,
-#     as new value."""
-
-#     # note: make sure to save the website in,
-#     # lower-case.
-#     # so first we have to lower-case the url.
-#     # and make sure to remove spaces.
-#     url = url.lower().strip()
-
-#     # make sure to remove all "//"
-#     url = url.replace(":", "##")
-
-#     # first remove all "https" and "http".
-#     url_parts = filter(lambda part: part not in (
-#         "http", "https"), url.split("//"))
-
-#     url = "".join(url_parts)
-
-#     # now remove all the colon's.
-#     url_parts = filter(lambda part: part not in (
-#         "http", "https"), url.split("##"))
-
-#     url = "".join(url_parts)
-
-#     # second remove all "www"
-#     url_parts = filter(lambda part: part not in ("www",), url.split("."))
-
-#     url = ".".join(url_parts)
-
-#     return f"https://www.{url}"
-
-
-# def url_end_check(url: str, ends: tuple = ("com", "org", "net"), default_end: int = 0):
-#     """checkout if the website contain a one of those,
-#     ends: (com, org, net) or the ends that the user provides,
-#     and add the default end if its not exist in the url."""
-
-#     # make sure that the default end don't go out of,
-#     # the ends tuple range.
-#     default_end %= len(ends)
-
-#     if url[-3:] in ends:
-#         return url
-
-#     return f"{url}.{ends[default_end]}"
-
-
-# def url_check(url):
-#     """checkout of the url and fix missing prefix and ends."""
-
-#     return url_end_check(check_missing_prefix(url))
-
-
 def get_user_input():
     """get the url and the url alias from the user."""
 
-    print("Press to enter to get back")
+    print("Press enter to get back")
     usr_input_url = input("Enter URL: ").strip().lower()
 
     # Guard-Condition.
@@ -192,7 +123,7 @@ def get_user_input():
         # the user want to exit, simply out want to go back.
         # so end the function and we not need to the url-alias,
         # because in the first place we don't get the url.
-        return 0, 0
+        return "", ""
 
     usr_input_url_alias = input("Enter URL Alias: ").strip()
 
@@ -201,26 +132,9 @@ def get_user_input():
         # add default alias if the user didn't give us one.
         # by the using of the url that user give us we will,
         # create an alias from that url.
-        usr_input_url_alias = create_default_alias(usr_input_url)
+        usr_input_url_alias = Url.create_default_alias(usr_input_url)
 
     return usr_input_url, usr_input_url_alias
-
-
-# def create_default_alias(url: str):
-#     """create a default alias from the url"""
-
-#     # first add the https and com or net or any end.
-#     url = url_check(url)
-
-#     # and make sure to remove the first item and the last one,
-#     # form the list.
-#     # ex:
-#     # https://keep.google.com
-#     # from that url we need only the 'keep' and 'google',
-#     # and join them using any char you want, to create default alias.
-#     url_name = url.split('.')[1:-1]
-
-#     return "-".join(url_name)
 
 
 # "Add new website",
@@ -232,14 +146,15 @@ def get_user_input():
 def add_new_website():
     """let the users enter there favorite websites."""
 
-    url_link, url_alias = get_user_input()
+    url = Url(*get_user_input())
+    # url_link, url_alias = get_user_input()
 
-    if not url_link:
+    if not url.url:
         # if the user didn't give us any thing.
         return 0
 
     else:
-        write_data_to_file(url_alias, url_link)
+        write_data_to_file(url)
 
 
 def show_all_websites():
