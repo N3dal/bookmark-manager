@@ -125,3 +125,21 @@ class Constants:
         "Show program Log",
         "Quit"
     )
+
+
+class ErrorMsg:
+    """"""
+
+    def __init__(self, msg="Error!"):
+        self.msg = msg
+
+    def __repr__(self):
+        return f"ErrorMsg('{self.msg}')"
+
+    def eprint(self):
+        """print the error msg on terminal."""
+        print(self.msg)
+        # now wait for the user to press Enter.
+        input("Press Enter to Continue")
+
+        return None
