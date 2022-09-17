@@ -23,6 +23,7 @@ from sys import exit
 # TODO: split the script into small-scripts. => separated files.
 # TODO: make sure to remove duplicate urls and assign them to different aliases names,
 # TODO: for example ("www.github.com", ("github", "ghub", "git")).
+# TODO: MAKE CSV database for the links, and their aliases.
 
 
 Tools.clear()
