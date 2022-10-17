@@ -22,4 +22,4 @@ simple bookmark manager built with `python` work from `terminal`.
 
 
 ## To-Do:
-[ ] add colors to the menus.
+- [ ] add colors to the menus.
