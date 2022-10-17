@@ -1,5 +1,5 @@
 
-<p>
+<p align="center">
 <img src="./src/logo.gif" />
 </p>
 
