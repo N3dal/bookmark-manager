@@ -13,7 +13,7 @@ use this program to save you favorite websites.
 simple bookmark manager built with `python` work from `terminal`.
 
 ## Demo:
-![screenshot01](./src/screenshot01.gif)
+![screenshot01](./src/screenshot02.gif)
 
 ![made-with-python](./src/made-with-python.svg)
 ![still-work-on-it](./src/still-work-on-it.svg)
