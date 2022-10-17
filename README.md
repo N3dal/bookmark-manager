@@ -3,7 +3,7 @@
 <img src="./src/logo.gif" />
 </p>
 
-## this is one of my fifty python projects challenge.
+`one of my fifty python projects challenge.`
 
 use this program to save you favorite websites.
 
