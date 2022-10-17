@@ -1,9 +1,9 @@
 
 <p align="center">
 <img src="./src/logo.gif" />
+<br />
 use this program to save you favorite websites.
 </p>
-
 
 `one of my fifty python projects challenge.`
 
